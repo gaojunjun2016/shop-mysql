@@ -1,0 +1,16 @@
+version: '2.2'
+
+services:
+  mariadb:
+    image: ${MARIADB_IMAGE:-mariadb:10.0}
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=gaojunjun
+      - MYSQL_PASSWORD=1234
+      - MYSQL_DATABASE=nideshop
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
